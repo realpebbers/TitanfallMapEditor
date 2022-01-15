@@ -1,0 +1,769 @@
+resource/ui/menus/model_browser.menu
+{
+    menu
+    {
+        ControlName				Frame
+		xpos					0
+		ypos					0
+		zpos					3
+		wide					f0
+		tall					f0
+		autoResize				0
+		visible					1
+		enabled					1
+		pinCorner				0
+		PaintBackgroundType		0
+		infocus_bgcolor_override	"0 0 0 0"
+		outoffocus_bgcolor_override	"0 0 0 0"
+
+		Vignette
+        {
+            ControlName             ImagePanel
+            InheritProperties       MenuVignette
+        }
+
+		Title
+		{
+			ControlName				Label
+			InheritProperties		MenuTitle
+			labelText				"Model Browser"
+		}
+
+		ButtonRowAnchor
+		{
+			ControlName				Label
+			labelText				""
+
+			xpos              130
+      		ypos              204
+		}
+
+		FilterButtonsRowAnchor
+		{
+			ControlName				Label
+			labelText				""
+
+			xpos              90
+      		ypos              807
+		}
+
+		BtnModelNameTab
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			labelText "Models"
+			wide 600
+			xpos					120
+			ypos					140
+
+			scriptID		999
+
+			pin_to_sibling				RowButtonsAnchor
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		TOP_RIGHT
+			navDown						BtnModel1
+		}
+
+		BtnModelName0
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+			interactive 		false
+
+
+			pin_to_sibling			BtnModel1
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName1
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel2
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName2
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel3
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName3
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel4
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName4
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel5
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName5
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel6
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName6
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel7
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName7
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel8
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName8
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel9
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName9
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel10
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName10
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel11
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName11
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel12
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName12
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel13
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName13
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel14
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		BtnModelName14 
+		{
+			ControlName				Label
+			labelText				""
+			textAlignment	west
+			classname ModelName
+			wide 586
+			tall 44
+			ypos -44
+			xpos -14
+
+			pin_to_sibling			BtnModel15
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+
+		YDivider0
+		{
+			ControlName			ImagePanel
+			wide						2
+			tall            641
+			visible			    1
+			image           "vgui/hud/white"
+			drawColor       "160 157 149 255"
+			scaleImage      1
+			xpos 3
+			ypos -1
+
+			pin_to_sibling				BtnModelNameTab
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		XDivider0
+		{
+			ControlName				ImagePanel
+			wide							1150
+			tall              2
+			visible				    1
+			image             "vgui/hud/white"
+			drawColor       	"160 157 149 255"
+			scaleImage        1
+			ypos 3
+			xpos 37
+
+			pin_to_sibling				BtnModelNameTab
+			pin_corner_to_sibling		BOTTOM_LEFT
+			pin_to_sibling_corner		BOTTOM_LEFT
+		}
+
+		BtnModelDummmyTop {
+			ControlName	RuiButton
+			visible		1
+			width		0
+			height 		0
+		}
+		BtnModel1
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				0
+			wide 					1120
+			xpos 					10
+			ypos                    20
+
+			pin_to_sibling			ButtonRowAnchor
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	TOP_LEFT
+			navUp					BtnModelDummmyTop
+			navRight 				BtnModelJoin
+			navDown					BtnModel2
+		}
+		BtnModel2
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				1
+			wide 							1120
+
+			pin_to_sibling			BtnModel1
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel1
+			navDown					BtnModel3
+			navRight 				BtnModelJoin
+		}
+		BtnModel3
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				2
+			wide 							1120
+
+			pin_to_sibling			BtnModel2
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel2
+			navDown					BtnModel4
+			navRight 				BtnModelJoin
+		}
+		BtnModel4
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				3
+			wide 							1120
+
+			pin_to_sibling			BtnModel3
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			//ypos					11
+			navUp					BtnModel3
+			navDown					BtnModel5
+			navRight 				BtnModelJoin
+		}
+		BtnModel5
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				4
+			wide 							1120
+
+			pin_to_sibling			BtnModel4
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel4
+			navDown					BtnModel6
+			navRight 				BtnModelJoin
+		}
+		BtnModel6
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				5
+			wide 							1120
+
+			pin_to_sibling			BtnModel5
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel5
+			navDown					BtnModel7
+			navRight 				BtnModelJoin
+		}
+		BtnModel7
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				6
+			wide 							1120
+
+			pin_to_sibling			BtnModel6
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel6
+			navDown					BtnModel8
+			navRight 				BtnModelJoin
+		}
+		BtnModel8
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				7
+			wide 							1120
+
+			pin_to_sibling			BtnModel7
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel7
+			navDown					BtnModel9
+			navRight 				BtnModelJoin
+		}
+		BtnModel9
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				8
+			wide 							1120
+
+			pin_to_sibling			BtnModel8
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel8
+			navDown					BtnModel10
+			navRight 				BtnModelJoin
+		}
+		BtnModel10
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				9
+			wide 							1120
+
+			pin_to_sibling			BtnModel9
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel9
+			navDown					BtnModel11
+			navRight 				BtnModelJoin
+		}
+		BtnModel11
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				10
+			wide 							1120
+
+			pin_to_sibling			BtnModel10
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel10
+			navDown					BtnModel12
+			navRight 				BtnModelJoin
+		}
+		BtnModel12
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				11
+			wide 							1120
+
+			pin_to_sibling			BtnModel11
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel11
+			navDown					BtnModel13
+			navRight 				BtnModelJoin
+		}
+		BtnModel13
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				12
+			wide 							1120
+
+			pin_to_sibling			BtnModel12
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel12
+			navDown					BtnModel14
+			navRight 				BtnModelJoin
+		}
+		BtnModel14
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				13
+			wide 							1120
+
+			pin_to_sibling			BtnModel13
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel13
+			navDown					BtnModel15
+			navRight 				BtnModelJoin
+		}
+		BtnModel15
+		{
+			ControlName				RuiButton
+			InheritProperties		RuiSmallButton
+			classname 				ModelButton
+			scriptID				14
+			wide 					1120
+
+			pin_to_sibling			BtnModel14
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			navUp					BtnModel14
+			navRight 				BtnModelJoin
+			navDown					BtnModelDummmyBottom
+		}
+		BtnModelDummmyBottom {
+			ControlName	RuiButton
+			visible		1
+			width		0
+			height 		0
+		}
+
+		ModelDetailsPanel
+		{
+			ControlName				RuiPanel
+			xpos					1300
+			ypos					160
+			tall					800
+			wide 					500
+			rui 					"ui/control_options_description.rpak"
+			wrap					1
+			visible					0
+			zpos					-1
+		}
+
+		BtnModelListUpArrow
+		{
+			ControlName					RuiButton
+			InheritProperties		RuiSmallButton
+			//labelText						"A"
+			wide 40
+			tall 40
+			xpos 2
+			ypos 2
+
+			image           "vgui/hud/white"
+			drawColor       "255 255 255 128"
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnModelListUpArrowPanel
+		{
+			ControlName				RuiPanel
+			wide 40
+			tall 40
+			xpos 2
+			ypos 2
+
+			rui 					"ui/control_options_description.rpak"
+
+			visible					1
+			zpos					-1
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnModelListDownArrow
+		{
+			ControlName					RuiButton
+			InheritProperties		RuiSmallButton
+			//labelText						"V"
+			wide 40
+			tall 40
+			xpos 2
+			ypos -604
+
+			image           "vgui/hud/white"
+			drawColor       "255 255 255 128"
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnModelListDownArrowPanel
+		{
+			ControlName				RuiPanel
+			wide 40
+			tall 40
+			xpos 2
+			ypos -604
+
+			rui 					"ui/control_options_description.rpak"
+
+			visible					1
+			zpos					-1
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnModelListSlider
+		{
+			ControlName					RuiButton
+			InheritProperties		RuiSmallButton
+			//labelText						"V"
+			wide 					40
+			tall 					562
+			xpos 					2
+			ypos 					-40
+			zpos					0
+
+			image           "vgui/hud/white"
+			drawColor       "255 255 255 128"
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnModelListSliderPanel
+		{
+			ControlName				RuiPanel
+			wide 40
+			tall 562
+			xpos 2
+			ypos -40
+
+			rui 					"ui/control_options_description.rpak"
+
+			visible					1
+			zpos					-1
+
+			pin_to_sibling					ModelDetailsPanel
+			pin_corner_to_sibling		TOP_RIGHT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		// sh_menu_models.gnut has a global function which gets called when
+		// left mouse button gets called while hovering and has mouse
+		// deltaX; deltaY which we can yoink for ourselfes
+		MouseMovementCapture
+		{
+				ControlName					CMouseMovementCapturePanel
+				wide 								40
+				tall 								562
+				xpos 								2
+				ypos 								-40
+				zpos								1
+
+				pin_to_sibling					ModelDetailsPanel
+				pin_corner_to_sibling		TOP_RIGHT
+				pin_to_sibling_corner		TOP_LEFT
+		}
+
+		FilterPanel
+		{
+			ControlName				RuiPanel
+			wide 1200
+			tall 153
+			xpos	-8
+
+			rui 					"ui/control_options_description.rpak"
+
+			visible					1
+			zpos					-1
+
+			pin_to_sibling					FilterButtonsRowAnchor
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		TOP_LEFT
+		}
+
+		BtnSearchLabel
+		{
+			ControlName					RuiButton
+			InheritProperties		RuiSmallButton
+			labelText			"#SEARCHBAR_LABEL"
+			textAlignment west
+			wide					500
+			xpos -23
+			ypos -16
+
+			wrap					1
+			visible				1
+			zpos					0
+
+			pin_to_sibling				FilterButtonsRowAnchor
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		TOP_LEFT
+
+			navUp					BtnModel15
+		}
+
+		BtnModelSearch
+		{
+			ControlName				TextEntry
+			zpos					100 // This works around input weirdness when the control is constructed by code instead of VGUI blackbox.
+			xpos 					-400
+			ypos 					-5
+			wide					390
+			tall					30
+			textHidden				0
+			editable				1
+			font 					Default_21
+			allowRightClickMenu		0
+			allowSpecialCharacters	0
+			unicode					0
+
+			pin_to_sibling				BtnSearchLabel
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		TOP_RIGHT
+
+			navUp					BtnModel15
+		}
+    }
+}

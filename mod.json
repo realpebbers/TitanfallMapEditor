@@ -1,0 +1,48 @@
+{
+    "Name": "Map Editor",
+    "LoadPriority": 2,
+    "Version": "1.0.0",
+    "RequiredOnClient": true,
+    "Scripts": [
+        {
+			"Path": "ui/menu_models.nut",
+			"RunOn": "UI",
+			"UICallback": {
+				"Before": "AddModelBrowserMenu"
+			}
+		},
+        {
+            "Path": "weapons/editor_modes/ui_editor_info.nut",
+            "RunOn": "CLIENT && MP"
+        },
+        {
+            "Path": "sh_assets.nut",
+            "RunOn": "UI || ((CLIENT || SERVER) && MP)",
+            "ServerCallback": {
+                "After": "ShAssets_Init"
+            },
+            "ClientCallback": {
+                "After": "ShAssets_Init"
+            },
+            "UICallback": {
+                "After": "ShAssets_Init"
+            }
+        },
+        {
+            "Path": "weapons/editor_modes/mode_place.nut",
+            "RunOn": "(CLIENT || SERVER) && MP"
+        },
+        {
+			"Path": "weapons/mp_weapon_editor.nut",
+			"RunOn": "(CLIENT || SERVER) && MP",
+            "ServerCallback": {
+                "Before": "RegisterEditorRemoteCallbacks",
+                "After": "Editor_Init"
+            },
+            "ClientCallback": {
+                "Before": "RegisterEditorRemoteCallbacks",
+                "After": "Editor_Init"
+            }
+		}
+    ]
+}
