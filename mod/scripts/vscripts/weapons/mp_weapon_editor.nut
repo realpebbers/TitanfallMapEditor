@@ -30,7 +30,7 @@ void function Editor_Init() {
     RegisterEditorMode(EditorModePlace_Init())
     RegisterEditorMode(EditorModeExtend_Init())
     RegisterEditorMode(EditorModeDelete_Init())
-    RegisterEditorMode(EditorModeBulkPlace_Init())
+//    RegisterEditorMode(EditorModeBulkPlace_Init())
 
     #if CLIENT
     RegisterConCommandTriggeredCallback("+use", ChangeEditorMode)

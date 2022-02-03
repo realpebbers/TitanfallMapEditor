@@ -42,7 +42,16 @@ void function EditorModeExtend_Think(entity player) {
     while( true )
     {
         TraceResults result = GetPropLineTrace(player)
-        if (IsValid(result.hitEnt) && result.hitEnt.GetScriptName() == "editor_placed_prop")
+        if (IsValid(file.highlightedEnt)) {
+            file.highlightedEnt.Destroy()
+        }
+        if (!IsValid(result.hitEnt)) {
+            WaitFrame()
+            continue
+        }
+        // This checks for it being a prop instead of the map
+        array<string> check = split(string(result.hitEnt.GetModelName()), "/")
+        if (check.len() > 0 && check[0] == "$\"models")
         {
             vector normal = Normalize(result.surfaceNormal)
             normal.x = expect float(RoundToNearestInt(normal.x))
@@ -52,11 +61,7 @@ void function EditorModeExtend_Think(entity player) {
             vector min = result.hitEnt.GetBoundingMins() // This is relative
             vector max = result.hitEnt.GetBoundingMaxs() // This is also relative
             vector bounds = max - min
-
-            if (IsValid(file.highlightedEnt)) {
-                file.highlightedEnt.Destroy()
-            }
-
+    
             if(fabs(result.hitEnt.GetAngles().y) == 90.0) {
                 float l = bounds.x
                 bounds.x = bounds.y
@@ -66,13 +71,19 @@ void function EditorModeExtend_Think(entity player) {
             vector res = <normal.x * bounds.x, normal.y * bounds.y, normal.z * bounds.z>
             vector pog = result.hitEnt.GetOrigin() + res
 
-            file.highlightedEnt = CreateClientSidePropDynamicClone(result.hitEnt, result.hitEnt.GetModelName() )
-            file.highlightedEnt.SetOrigin(pog)
+            #if CLIENT
+            file.highlightedEnt = CreateClientSidePropDynamic(
+                pog,
+                result.hitEnt.GetAngles(),
+                result.hitEnt.GetModelName()
+            )
 
             DeployableModelHighlight( file.highlightedEnt )
-
-            WaitFrame()
+            #endif
         }
+        
+
+        WaitFrame()
     }
 }
 #endif
@@ -118,7 +129,7 @@ void function EditorModeExtend_Extend(entity player)
 void function PlaceProp(entity player, asset ass, vector origin, vector angles)
 {
     #if SERVER
-    entity prop = CreatePropDynamic(ass, origin, angles, SOLID_VPHYSICS, 6000)
+    entity prop = CreatePropDynamicLightweight(ass, origin, angles, SOLID_VPHYSICS, 6000)
     prop.AllowMantle()
     prop.SetScriptName("editor_placed_prop")
 

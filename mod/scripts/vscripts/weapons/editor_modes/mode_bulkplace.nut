@@ -62,7 +62,7 @@ void function StartNewPropPlacement(entity player)
     #if SERVER
     SetProp(
         player, 
-        CreatePropDynamic( 
+        CreatePropDynamicLightweight( 
             GetAsset(player), 
             player.p.offsetVector, 
             <0, 0, 0>, 

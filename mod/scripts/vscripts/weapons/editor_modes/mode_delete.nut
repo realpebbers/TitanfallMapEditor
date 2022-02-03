@@ -42,7 +42,13 @@ void function EditorModeDelete_Think(entity player) {
     while( true )
     {
         TraceResults result = GetPropLineTrace(player)
-        if (IsValid(result.hitEnt) && result.hitEnt.GetScriptName() == "editor_placed_prop")
+        if (!IsValid(result.hitEnt)) {
+            WaitFrame()
+            continue
+        }
+
+        array<string> check = split(string(result.hitEnt.GetModelName()), "/")
+        if (check.len() > 0 && check[0] == "$\"models")
         {
             if( IsValid( file.highlightedEnt ) && IsValid( result.hitEnt ) )
             {
@@ -59,9 +65,19 @@ void function EditorModeDelete_Think(entity player) {
             
             if( IsValid(result.hitEnt) )
             {
-                file.highlightedEnt = CreateClientSidePropDynamicClone(result.hitEnt, result.hitEnt.GetModelName() )
+                #if CLIENT
+                print("data: " + result.hitEnt.GetOrigin())
+                print("data2: " + result.hitEnt.GetAngles())
+                print("data3: " + result.hitEnt.GetModelName())
+                file.highlightedEnt = CreateClientSidePropDynamic(
+                    result.hitEnt.GetOrigin(),
+                    result.hitEnt.GetAngles(), 
+                    result.hitEnt.GetModelName()
+                )
                 file.highlightedEnt.e.svCounterpart = result.hitEnt
+                file.highlightedEnt.Show()
                 DeployableModelInvalidHighlight( file.highlightedEnt )
+                #endif
             }
 
         }
