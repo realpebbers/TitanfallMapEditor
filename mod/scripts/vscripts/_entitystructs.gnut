@@ -312,7 +312,7 @@ global struct EditorMode
 
 global struct PropInfo 
 {
-    asset selectedAsset
+    asset selectedAsset = $"models/error.mdl"
 }
 
 // This struct is hooked up to entity.p in code
@@ -502,9 +502,15 @@ global struct ServerPlayerStruct
     // Map Editor
     PropInfo& selectedProp
 	entity currentPropEntity
+	entity currentRealPropEntity
+
+	bool isRotating = false
 
 	EditorMode& selectedEditorMode
+	int selectedEditorModeIndex
 	EditorMode ornull lastEditorMode
+
+	vector offsetVector
 }
 
 global struct TitanSettings

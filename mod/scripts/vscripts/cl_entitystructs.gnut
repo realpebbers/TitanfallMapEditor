@@ -75,7 +75,7 @@ global struct EditorMode
 
 global struct PropInfo 
 {
-    asset selectedAsset
+    asset selectedAsset = $"models/error.mdl"
 }
 
 // This struct is hooked up to entity.p in code
@@ -114,9 +114,16 @@ global struct ClientPlayerStruct
 
     PropInfo& selectedProp
 	entity currentPropEntity
+	entity currentRealPropEntity
 	
 	EditorMode& selectedEditorMode
+	int selectedEditorModeIndex
 	EditorMode ornull lastEditorMode
+
+	vector offsetVector = <0,0,0>
+	vector bbMins
+	vector bbMaxs
+	vector center
 }
 
 

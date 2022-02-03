@@ -2,6 +2,10 @@ global function Editor_Init
 global function RegisterEditorRemoteCallbacks
 global function NewEditorMode
 global function GetEditorModes
+#if SERVER
+global function GetAllProps
+global function AddProp
+#endif
 
 global function OnWeaponActivate_editor
 global function OnWeaponDeactivate_editor
@@ -10,8 +14,7 @@ global function OnWeaponPrimaryAttack_editor
 #if SERVER
 struct {
     array<EditorMode> editorModes
-
-    
+    array<entity> allProps
 } file;
 #elseif CLIENT
 struct {
@@ -25,10 +28,16 @@ void function Editor_Init() {
     PrecacheWeapon( "mp_weapon_editor" )
     
     RegisterEditorMode(EditorModePlace_Init())
+    RegisterEditorMode(EditorModeBulkPlace_Init())
 
     #if CLIENT
+    RegisterConCommandTriggeredCallback("+use", ChangeEditorMode)
+
+    RunUIScript("UpdateCurrentMap", GetMapName())
     UI_Editor_Init()
     UI_Editor_ToggleUI()
+    #elseif SERVER
+    AddClientCommandCallback("editor_mode", ClientCommand_EditorMode)
     #endif
 }
 
@@ -39,7 +48,11 @@ void function OnWeaponActivate_editor(entity weapon) {
     UI_Editor_ToggleUI()
     #endif
     if(player.p.selectedEditorMode.activateCallback == null) {
+        #if CLIENT
+        UI_Editor_UpdateUI( GetEditorModes()[0] )
+        #endif
         player.p.selectedEditorMode = GetEditorModes()[0]
+        player.p.selectedEditorModeIndex = 0
     }
 
     player.p.selectedEditorMode.activateCallback( player )
@@ -73,11 +86,11 @@ void function RegisterRemoteFunctions() {
 }
 
 
-void function SetCurrentEditorMode(entity player, EditorMode mode)
+void function SetCurrentEditorMode(entity player, int idx)
 {
     if(!IsValid( player )) return
     
-    if( GetEditorModes().find(mode) == GetEditorModes().find(player.p.selectedEditorMode) )
+    if( idx == player.p.selectedEditorModeIndex )
         return
 
     if(player.p.selectedEditorMode.deactivateCallback != null)
@@ -86,10 +99,11 @@ void function SetCurrentEditorMode(entity player, EditorMode mode)
         player.p.selectedEditorMode.deactivateCallback(player)
     }
 
-    player.p.selectedEditorMode = mode
+    player.p.selectedEditorMode = GetEditorModes()[idx]
+    player.p.selectedEditorModeIndex = idx
 
     #if CLIENT
-    UI_Editor_UpdateUI( mode )
+    UI_Editor_UpdateUI( GetEditorModes()[idx] )
     #endif
 
     player.p.selectedEditorMode.activateCallback(player)
@@ -97,6 +111,29 @@ void function SetCurrentEditorMode(entity player, EditorMode mode)
 
 void function RegisterEditorMode(EditorMode mode) {
     file.editorModes.append(mode)
+}
+
+#if CLIENT
+void function ChangeEditorMode( var button ) {
+    entity player = GetLocalClientPlayer()
+
+    NextEditorMode(player)
+    player.ClientCommand("editor_mode")
+}
+#elseif SERVER
+bool function ClientCommand_EditorMode(entity player, array<string> args) {
+    NextEditorMode(player)
+    return true
+}
+#endif
+
+void function NextEditorMode(entity player) {
+    int length = GetEditorModes().len()
+    int i = player.p.selectedEditorModeIndex + 1
+
+    if (i >= length) i = 0
+    
+    SetCurrentEditorMode(player, i)
 }
 
 array<EditorMode> function GetEditorModes()
@@ -121,3 +158,13 @@ EditorMode function NewEditorMode(
 
     return mode
 }
+
+#if SERVER
+array<entity> function GetAllProps() {
+    return file.allProps
+}
+
+void function AddProp(entity prop) {
+    file.allProps.append(prop)
+}
+#endif
