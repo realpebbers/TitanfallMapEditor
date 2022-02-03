@@ -17,10 +17,10 @@ You don't need the map editor to load a map, all you have to do is get the map's
 3. Start editing!
 
 To change the model or the mode go to your controls settings and modify the keys
-The place mode is used to place new props
-The extend mode is to repeat a prop in a certain direction
-The delete mode deletes existing props
-The bulk place mode is currently broken pls dont use it
+1. The place mode is used to place new props
+2. The extend mode is to repeat a prop in a certain direction
+3. The delete mode deletes existing props
+4. The bulk place mode is currently broken pls dont use it
 
 ## Exporting
 Refer to the [R2Edit](https://github.com/Vysteria/R2Edit) repo
