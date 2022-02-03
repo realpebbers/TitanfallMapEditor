@@ -51,3 +51,9 @@ string function serialize(string action, string ass, vector origin, vector angle
 	string anglesSerialized = angles.x.tostring() + "," + angles.y.tostring() + "," + angles.z.tostring()
     return "[" + action + "]" + ass + ";" + positionSerialized + ";" + anglesSerialized
 }
+
+TraceResults function GetPropLineTrace(entity player)
+{
+    TraceResults result = TraceLineHighDetail(player.EyePosition() + 5 * player.GetViewForward(), player.GetOrigin() + 1500 * player.GetViewForward(), [player], TRACE_MASK_SHOT, TRACE_COLLISION_GROUP_PLAYER)
+    return result
+}

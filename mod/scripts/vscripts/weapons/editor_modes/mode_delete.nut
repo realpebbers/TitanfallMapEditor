@@ -41,7 +41,7 @@ void function EditorModeDelete_Think(entity player) {
     
     while( true )
     {
-        TraceResults result = GetDeleteLineTrace(player)
+        TraceResults result = GetPropLineTrace(player)
         if (IsValid(result.hitEnt) && result.hitEnt.GetScriptName() == "editor_placed_prop")
         {
             if( IsValid( file.highlightedEnt ) && IsValid( result.hitEnt ) )
@@ -92,7 +92,7 @@ void function EditorModeDelete_Delete(entity player)
 void function DeleteProp(entity player)
 {
     #if SERVER
-    TraceResults result = GetDeleteLineTrace(player)
+    TraceResults result = GetPropLineTrace(player)
     if (IsValid(result.hitEnt))
     {
         if (result.hitEnt.GetScriptName() == "editor_placed_prop")
@@ -108,10 +108,4 @@ void function DeleteProp(entity player)
         }
     }
     #endif
-}
-
-TraceResults function GetDeleteLineTrace(entity player)
-{
-    TraceResults result = TraceLineHighDetail(player.EyePosition() + 5 * player.GetViewForward(), player.GetOrigin() + 1500 * player.GetViewForward(), [player], TRACE_MASK_SHOT, TRACE_COLLISION_GROUP_PLAYER)
-    return result
 }

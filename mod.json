@@ -5,6 +5,10 @@
     "RequiredOnClient": true,
     "Scripts": [
         {
+            "Path": "weapons/editor_modes/mode_extend.nut",
+            "RunOn": "(CLIENT || SERVER) && MP"
+        },
+        {
             "Path": "weapons/editor_modes/mode_delete.nut",
             "RunOn": "(CLIENT || SERVER) && MP"
         },

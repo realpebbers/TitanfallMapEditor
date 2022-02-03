@@ -28,6 +28,7 @@ void function Editor_Init() {
     PrecacheWeapon( "mp_weapon_editor" )
     
     RegisterEditorMode(EditorModePlace_Init())
+    RegisterEditorMode(EditorModeExtend_Init())
     RegisterEditorMode(EditorModeDelete_Init())
     RegisterEditorMode(EditorModeBulkPlace_Init())
 
