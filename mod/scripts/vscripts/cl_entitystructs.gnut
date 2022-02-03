@@ -53,6 +53,7 @@ global struct ClientEntityStruct
 	string functionref( entity ent ) entTextOverrideCallback
 
 	string enemyHighlight = ""
+	entity svCounterpart
 }
 
 

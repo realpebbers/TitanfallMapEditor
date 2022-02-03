@@ -128,16 +128,12 @@ void function PlaceProp(entity player)
     GetProp(player).AllowMantle()
     GetProp(player).kv.solid = SOLID_VPHYSICS
     GetProp(player).SetScriptName("editor_placed_prop")
-    
 
     // prints prop info to the console to save it
     vector myOrigin = GetProp(player).GetOrigin()
     vector myAngles = GetProp(player).GetAngles()
 
-    string positionSerialized = myOrigin.x.tostring() + "," + myOrigin.y.tostring() + "," + myOrigin.z.tostring()
-	string anglesSerialized = myAngles.x.tostring() + "," + myAngles.y.tostring() + "," + myAngles.z.tostring()
-    //printl("[editor]" + string(GetAssetFromPlayer(player)) + ";" + positionSerialized + ";" + anglesSerialized)
-    printl("[editor] " + GetAsset(player) )
+    printl(serialize("place", string(GetAsset(player)), myOrigin, myAngles))
 
     #elseif CLIENT
     if(player != GetLocalClientPlayer()) return;

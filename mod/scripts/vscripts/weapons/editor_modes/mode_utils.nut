@@ -45,3 +45,9 @@ int function indexOf(array<asset> arr, asset val) {
     }
     return -1
 }
+
+string function serialize(string action, string ass, vector origin, vector angles) {
+    string positionSerialized = origin.x.tostring() + "," + origin.y.tostring() + "," + origin.z.tostring()
+	string anglesSerialized = angles.x.tostring() + "," + angles.y.tostring() + "," + angles.z.tostring()
+    return "[" + action + "]" + ass + ";" + positionSerialized + ";" + anglesSerialized
+}
