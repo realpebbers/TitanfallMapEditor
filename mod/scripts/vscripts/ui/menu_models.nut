@@ -112,6 +112,8 @@ void function InitModelBrowserMenu()
 
 	//Buttons at the bottom
     AddButtonEventHandler( Hud_GetChild( file.menu, "BtnSearchLabel"), UIE_CHANGE, FilterAndUpdateList )
+    AddButtonEventHandler( Hud_GetChild( file.menu, "BtnSave"), UIE_CLICK, SaveMap )
+    AddButtonEventHandler( Hud_GetChild( file.menu, "BtnLoad"), UIE_CLICK, LoadMap )
 
     // the text entry area
 	AddButtonEventHandler( Hud_GetChild( file.menu, "BtnModelSearch"), UIE_CHANGE, FilterAndUpdateList )
@@ -486,6 +488,18 @@ void function OnModelSelected( var button )
 	string name = file.modelsArrayFiltered[idx].modelName
 
 	RunClientScript("UICallback_SelectModel", name)
+}
+
+void function LoadMap( var button ) {
+	int load = GetConVarInt( "load_map" )
+
+	RunClientScript( "UICallback_LoadMap", load )
+}
+
+void function SaveMap( var button ) {
+	int save = GetConVarInt( "save_map" )
+
+	RunClientScript( "UICallback_SaveMap", save)
 }
 
 void function OpenModelMenu() {

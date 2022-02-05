@@ -15,16 +15,25 @@
     ],
     "Scripts": [
         {
+            "Path": "maps/save_file0.nut",
+            "RunOn": "SERVER && MP",
+            "ServerCallback": {
+                "Before": "InitMap0"
+            }
+        },
+        {
             "Path": "maps/save_file1.nut",
-            "RunOn": "(CLIENT || SERVER) && MP"
+            "RunOn": "SERVER && MP",
+            "ServerCallback": {
+                "Before": "InitMap1"
+            }
         },
         {
             "Path": "maps/save_file2.nut",
-            "RunOn": "(CLIENT || SERVER) && MP"
-        },
-        {
-            "Path": "maps/save_file3.nut",
-            "RunOn": "(CLIENT || SERVER) && MP"
+            "RunOn": "SERVER && MP",
+            "ServerCallback": {
+                "Before": "InitMap2"
+            }
         },
         {
             "Path": "weapons/editor_modes/mode_extend.nut",
@@ -37,6 +46,10 @@
         {
 			"Path": "weapons/editor_modes/mode_utils.nut",
 			"RunOn": "(CLIENT || SERVER) && MP"
+		},
+        {
+			"Path": "_map_saving.nut",
+			"RunOn": "SERVER && MP"
 		},
         {
 			"Path": "ui/menu_models.nut",

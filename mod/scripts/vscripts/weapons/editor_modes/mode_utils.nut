@@ -52,6 +52,42 @@ string function serialize(string action, string ass, vector origin, vector angle
     return "[" + action + "]" + ass + ";" + positionSerialized + ";" + anglesSerialized
 }
 
+string function SerializeVector( vector o ) {
+    return o.x + "," + o.y + "," + o.z
+}
+
+string function SerializeProp( asset a, vector pos, vector ang, bool mantle, int fade) {
+    return string(a) + ";" + SerializeVector(pos) + ";" + SerializeVector(ang) + ";" + mantle + ";" + fade
+}
+
+vector function DeserializeVector(string vec) {
+    array<string> data = split(vec, ",")
+
+    float x = data[0].tofloat()
+    float y = data[1].tofloat()
+    float z = data[2].tofloat()
+    
+    return < x, y, z >
+}
+#if SERVER
+entity function DeserializeProp(string ss) {
+    array<string> data = split(ss, ";")
+    
+    asset model = CastStringToAsset(data[0])
+    vector origin = DeserializeVector(data[1])
+    vector angles = DeserializeVector(data[2])
+    bool mantle = false
+    int fade = data[4].tointeger()
+
+    if (data[3] == "true") {
+        mantle = true
+    }
+
+    entity e = CreatePropDynamicLightweight(model,origin,angles,SOLID_VPHYSICS,float(fade))
+	if(mantle) e.AllowMantle()
+	return e
+}
+#endif
 TraceResults function GetPropLineTrace(entity player)
 {
     TraceResults result = TraceLineHighDetail(player.EyePosition() + 5 * player.GetViewForward(), player.GetOrigin() + 1500 * player.GetViewForward(), [player], TRACE_MASK_SHOT, TRACE_COLLISION_GROUP_PLAYER)

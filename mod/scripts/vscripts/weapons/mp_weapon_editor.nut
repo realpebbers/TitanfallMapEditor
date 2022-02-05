@@ -5,6 +5,8 @@ global function GetEditorModes
 #if SERVER
 global function GetAllProps
 global function AddProp
+#elseif CLIENT
+global function UICallback_SaveMap
 #endif
 
 global function OnWeaponActivate_editor
@@ -40,6 +42,7 @@ void function Editor_Init() {
     UI_Editor_ToggleUI()
     #elseif SERVER
     AddClientCommandCallback("editor_mode", ClientCommand_EditorMode)
+    AddClientCommandCallback("savemap", ClientCommand_Save)
     #endif
 }
 
@@ -116,6 +119,18 @@ void function RegisterEditorMode(EditorMode mode) {
 }
 
 #if CLIENT
+void function UICallback_SaveMap( int map ) {
+    entity player = GetLocalClientPlayer()
+
+    player.ClientCommand("savemap " + map)
+}
+
+void function UICallback_LoadMap( int map ) {
+    entity player = GetLocalClientPlayer()
+
+    player.ClientCommand("loadmap " + map)
+}
+
 void function ChangeEditorMode( var button ) {
     entity player = GetLocalClientPlayer()
 
@@ -125,6 +140,15 @@ void function ChangeEditorMode( var button ) {
 #elseif SERVER
 bool function ClientCommand_EditorMode(entity player, array<string> args) {
     NextEditorMode(player)
+    return true
+}
+
+bool function ClientCommand_Save(entity player, array<string> args) {
+    if (args.len() == 0) return false
+
+    int map = args[0].tointeger()
+    SavePropMap(map)
+
     return true
 }
 #endif
