@@ -1,6 +1,5 @@
 global function SavePropMap
 global function LoadPropMap
-global function ClearPropMap
 
 // a script that writes scripts..
 const string HEADER = "global function InitMap%n\n\nglobal const MAP_%n_EXISTS = true\nglobal array<string> MAP_%n_PROPS\n\n" +

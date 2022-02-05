@@ -176,6 +176,7 @@ bool function ClientCommand_Load(entity player, array<string> args) {
 
 bool function ClientCommand_DeleteMap(entity player, array<string> args) {
     thread ClearPropMap()
+    return true
 }
 #endif
 

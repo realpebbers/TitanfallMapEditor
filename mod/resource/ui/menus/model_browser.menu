@@ -836,6 +836,27 @@ resource/ui/menus/model_browser.menu
 
 			navLeft					SwtBtnSelectMapSave
 			navDown                 BtnSave
+			navUp                   BtnClear
+		}
+
+		BtnClear
+		{
+			ControlName							RuiButton
+			InheritProperties				RuiSmallButton
+			labelText				"Clear"
+			wide 100
+			xpos		-17
+			ypos 		-148
+			zpos 90
+
+			scriptID			999
+
+			pin_to_sibling			FilterPanel
+			pin_corner_to_sibling	TOP_RIGHT
+			pin_to_sibling_corner	BOTTOM_RIGHT
+
+			navLeft					SwtBtnSelectMapSave
+			navDown                 BtnSave
 		}
     }
 }
