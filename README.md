@@ -18,7 +18,7 @@ You don't need the map editor to load a map, all you have to do is get the map's
 
 To change the model or the mode go to your controls settings and modify the keys
 1. The place mode is used to place new props (Use the num pad and scroll wheel for precise positioning)
-2. The extend mode is to repeat a prop in a certain direction
+2. The extend mode is to repeat a prop in a certain direction (Use the scroll wheel to increase duplication count, this is the fastest way for building many props rn)
 3. The delete mode deletes existing props
 4. The bulk place mode is currently broken pls dont use it
 
