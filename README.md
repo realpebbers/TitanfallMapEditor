@@ -4,12 +4,22 @@ For any bugs please DM Pebbers#9558 on discord, or create an issue in this repo.
 This is a fork of R5Reloaded's map editor with alot of modifications.
 Mantained by Pebbers and JANU
 
+[Tutorial](https://www.youtube.com/watch?v=lu1X-1ufKbc)
+
 # FAQ:
 ## How to download the map editor?
 Go to the releases tab then download the latest version and put it in your mods folder.
 
 ## How to download a map?
-You don't need the map editor to load a map, all you have to do is get the map's script file and put it inside of vscripts/mp/level/(map name).nut
+Get the map file and replace it in your save files folder (mod/scripts/vscripts/maps) <br/>
+Load it via a script or the ingame menu.
+
+## I cant find the asset I want!
+Every map has a different set of assets, we are working on improving it so you can use any props but look in different maps for now. <br/>
+Also not everything has a prop, it can be something in the map .bsp
+
+## Saving doesnt work!
+Make sure the name of the mod in the mods folder is Pebbers.MapEditor
 
 ## How to use the map editor?
 1. Enable sv_cheats in console by doing "sv_cheats 1"
