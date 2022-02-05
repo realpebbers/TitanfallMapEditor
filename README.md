@@ -18,6 +18,9 @@ Load it via a script or the ingame menu.
 Every map has a different set of assets, we are working on improving it so you can use any props but look in different maps for now. <br/>
 Also not everything has a prop, it can be something in the map .bsp
 
+## Saving doesnt work!
+Make sure the name of the mod in the mods folder is Pebbers.MapEditor
+
 ## How to use the map editor?
 1. Enable sv_cheats in console by doing "sv_cheats 1"
 2. Give your self the editor by doing "give mp_weapon_editor"
