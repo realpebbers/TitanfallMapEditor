@@ -107,6 +107,7 @@ entity function DeserializeProp(string ss) {
     }
 
     entity e = CreatePropDynamicLightweight(model,origin,angles,SOLID_VPHYSICS,float(fade))
+    e.SetScriptName("editor_placed_prop")
 	if(mantle) e.AllowMantle()
 	return e
 }

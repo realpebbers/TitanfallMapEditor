@@ -5,6 +5,7 @@ global function GetEditorModes
 #if SERVER
 global function GetAllProps
 global function AddProp
+global function RemoveProp
 #elseif CLIENT
 global function UICallback_SaveMap
 global function UICallback_LoadMap
@@ -203,5 +204,9 @@ array<entity> function GetAllProps() {
 
 void function AddProp(entity prop) {
     file.allProps.append(prop)
+}
+
+void function RemoveProp(entity prop) {
+    file.allProps.remove(file.allProps.find(prop))
 }
 #endif

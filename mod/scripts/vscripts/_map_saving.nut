@@ -58,6 +58,7 @@ void function SetMap( int map ) {
     }
 
     foreach(entity prop in GetAllProps()) {
+        if(!IsValid(prop)) continue
         if (map == 0) {
             MAP_0_PROPS.append(SerializeProp(prop.GetModelName(), prop.GetOrigin(), prop.GetAngles(), true, 6000))
         } else if (map == 1) {
@@ -72,6 +73,7 @@ void function SavePropMap( int map ) {
     array<string> code = []
     SetMap( map )
     foreach(entity prop in GetAllProps()) {
+        if(!IsValid(prop)) continue
         code.append(GenerateCode(prop))
     }
     string path = "../R2Northstar/mods/Pebbers.MapEditor/mod/scripts/vscripts/maps/save_file" + map + ".nut"
