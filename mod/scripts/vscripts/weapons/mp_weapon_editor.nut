@@ -9,6 +9,7 @@ global function RemoveProp
 #elseif CLIENT
 global function UICallback_SaveMap
 global function UICallback_LoadMap
+global function UICallback_DeleteMap
 #endif
 
 global function OnWeaponActivate_editor
@@ -46,6 +47,8 @@ void function Editor_Init() {
     AddClientCommandCallback("editor_mode", ClientCommand_EditorMode)
     AddClientCommandCallback("savemap", ClientCommand_Save)
     AddClientCommandCallback("loadmap", ClientCommand_Load)
+    AddClientCommandCallback("deletemap", ClientCommand_DeleteMap)
+    AddClientCommandCallback("hide_props", ClientCommand_HideProp)
     #endif
 }
 
@@ -134,12 +137,19 @@ void function UICallback_LoadMap( int map ) {
     player.ClientCommand("loadmap " + map)
 }
 
+void function UICallback_DeleteMap( int map ) {
+    entity player = GetLocalClientPlayer()
+
+    player.ClientCommand("deletemap")
+}
+
 void function ChangeEditorMode( var button ) {
     entity player = GetLocalClientPlayer()
 
     NextEditorMode(player)
     player.ClientCommand("editor_mode")
 }
+
 #elseif SERVER
 bool function ClientCommand_EditorMode(entity player, array<string> args) {
     NextEditorMode(player)
@@ -162,6 +172,10 @@ bool function ClientCommand_Load(entity player, array<string> args) {
     thread LoadPropMap(map)
 
     return true
+}
+
+bool function ClientCommand_DeleteMap(entity player, array<string> args) {
+    thread ClearPropMap()
 }
 #endif
 
@@ -208,5 +222,10 @@ void function AddProp(entity prop) {
 
 void function RemoveProp(entity prop) {
     file.allProps.remove(file.allProps.find(prop))
+}
+
+bool function ClientCommand_HideProp(entity player, array<string> args) {
+    player.p.hideProps = !player.p.hideProps
+    return true
 }
 #endif

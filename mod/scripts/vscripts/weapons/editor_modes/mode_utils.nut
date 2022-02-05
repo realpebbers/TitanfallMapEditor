@@ -70,7 +70,7 @@ vector function DeserializeVector(string vec) {
     return < x, y, z >
 }
 #if SERVER
-void function ClearMap() {
+void function ClearPropMap() {
     int per = 5
     int i = 0
 

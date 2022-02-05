@@ -160,6 +160,10 @@ void function PlaceProp(entity player, asset ass, vector origin, vector angles)
     prop.AllowMantle()
     prop.SetScriptName("editor_placed_prop")
 
+    if (player.p.hideProps) {
+        prop.Hide()
+    }
+
     AddProp(prop)
 
     printl(serialize("place", string(GetAsset(player)), origin, angles))

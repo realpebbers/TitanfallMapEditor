@@ -114,6 +114,7 @@ void function InitModelBrowserMenu()
     AddButtonEventHandler( Hud_GetChild( file.menu, "BtnSearchLabel"), UIE_CHANGE, FilterAndUpdateList )
     AddButtonEventHandler( Hud_GetChild( file.menu, "BtnSave"), UIE_CLICK, SaveMap )
     AddButtonEventHandler( Hud_GetChild( file.menu, "BtnLoad"), UIE_CLICK, LoadMap )
+    AddButtonEventHandler( Hud_GetChild( file.menu, "BtnClear"), UIE_CLICK, ClearMap )
 
     // the text entry area
 	AddButtonEventHandler( Hud_GetChild( file.menu, "BtnModelSearch"), UIE_CHANGE, FilterAndUpdateList )
@@ -498,6 +499,10 @@ void function SaveMap( var button ) {
 	SaveDialog()
 }
 
+void function ClearMap( var button ) {
+	ClearDialog()
+}
+
 void function SaveDialog() {
 	DialogData data
 	data.header = "SAVE?"
@@ -522,6 +527,18 @@ void function LoadDialog() {
 	OpenDialog(data)
 }
 
+void function ClearDialog() {
+	DialogData data
+	data.header = "CLEAR?"
+	data.message = "This will remove all props that are spawned, are you sure you want to proceed?"
+	data.messageColor = [ENEMY_R, ENEMY_G * 0.7, ENEMY_B * 0.7, 255]
+
+	AddDialogButton( data, "#CANCEL_NO" )
+	AddDialogButton( data, "Yes, proceed and delete all current props.", ConfirmDelete)
+
+	OpenDialog(data)
+}
+
 void function ConfirmSave() {
 	int save = GetConVarInt( "save_map" )
 	RunClientScript( "UICallback_SaveMap", save)
@@ -531,6 +548,10 @@ void function ConfirmLoad() {
 	int load = GetConVarInt( "load_map" )
 
 	RunClientScript( "UICallback_LoadMap", load )
+}
+
+void function ConfirmDelete() {
+	RunClientScript( "UICallback_DeleteMap" )
 }
 
 void function OpenModelMenu() {

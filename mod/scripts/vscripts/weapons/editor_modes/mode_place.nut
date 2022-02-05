@@ -123,7 +123,9 @@ void function PlaceProp(entity player)
 {
     #if SERVER
     AddProp(GetProp(player))
-    GetProp(player).Show()
+    if (!player.p.hideProps) {
+        GetProp(player).Show()
+    }
     GetProp(player).Solid()
     GetProp(player).AllowMantle()
     GetProp(player).kv.solid = SOLID_VPHYSICS

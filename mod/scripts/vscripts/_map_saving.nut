@@ -1,5 +1,6 @@
 global function SavePropMap
 global function LoadPropMap
+global function ClearPropMap
 
 // a script that writes scripts..
 const string HEADER = "global function InitMap%n\n\nglobal const MAP_%n_EXISTS = true\nglobal array<string> MAP_%n_PROPS\n\n" +
@@ -11,7 +12,7 @@ const string FOOTER = "}\n\nvoid function AddMapProp( asset a, vector pos, vecto
 void function LoadPropMap( int map ) {
     if (MapExists( map )) {
         // Delete old map
-        waitthread ClearMap()
+        waitthread ClearPropMap()
 
         array<string> props = GetMapProps( map )
         foreach(string prop in props) {

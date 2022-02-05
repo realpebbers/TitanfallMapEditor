@@ -510,6 +510,7 @@ global struct ServerPlayerStruct
 	int selectedEditorModeIndex
 	EditorMode ornull lastEditorMode
 
+	bool hideProps = false
 	vector offsetVector
 	int extendDistance = 1
 }
