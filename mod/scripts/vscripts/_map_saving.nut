@@ -48,14 +48,35 @@ bool function MapExists( int map ) {
     unreachable
 }
 
+void function SetMap( int map ) {
+    if(map == 0) {
+        MAP_0_PROPS.clear()
+    } else if (map == 1) {
+        MAP_1_PROPS.clear()
+    } else if (map == 2) {
+        MAP_2_PROPS.clear()
+    }
+
+    foreach(entity prop in GetAllProps()) {
+        if (map == 0) {
+            MAP_0_PROPS.append(SerializeProp(prop.GetModelName(), prop.GetOrigin(), prop.GetAngles(), true, 6000))
+        } else if (map == 1) {
+            MAP_1_PROPS.append(SerializeProp(prop.GetModelName(), prop.GetOrigin(), prop.GetAngles(), true, 6000))
+        } else if (map == 2) {
+            MAP_2_PROPS.append(SerializeProp(prop.GetModelName(), prop.GetOrigin(), prop.GetAngles(), true, 6000))
+        }
+    }
+}
+
 void function SavePropMap( int map ) {
     array<string> code = []
-
+    SetMap( map )
     foreach(entity prop in GetAllProps()) {
         code.append(GenerateCode(prop))
     }
     string path = "../R2Northstar/mods/Pebbers.MapEditor/mod/scripts/vscripts/maps/save_file" + map + ".nut"
     WriteOut(path, map, code)
+
 }
 
 void function WriteOut(string filename, int map, array<string> code) {

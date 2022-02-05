@@ -491,15 +491,46 @@ void function OnModelSelected( var button )
 }
 
 void function LoadMap( var button ) {
-	int load = GetConVarInt( "load_map" )
-
-	RunClientScript( "UICallback_LoadMap", load )
+	LoadDialog()
 }
 
 void function SaveMap( var button ) {
-	int save = GetConVarInt( "save_map" )
+	SaveDialog()
+}
 
+void function SaveDialog() {
+	DialogData data
+	data.header = "SAVE?"
+	data.message = "Saving will overwrite any map data already existing in this map. Are you sure you want to proceed? You can backup in a seperate save file."
+	data.messageColor = [ENEMY_R, ENEMY_G * 0.7, ENEMY_B * 0.7, 255]
+
+	AddDialogButton( data, "#CANCEL_NO" )
+	AddDialogButton( data, "Yes, proceed and overwrite map file.", ConfirmSave)
+
+	OpenDialog(data)
+}
+
+void function LoadDialog() {
+	DialogData data
+	data.header = "LOAD?"
+	data.message = "Loading will delete any props already built on your current game. Are you sure you want all props to be removed?"
+	data.messageColor = [ENEMY_R, ENEMY_G * 0.7, ENEMY_B * 0.7, 255]
+
+	AddDialogButton( data, "#CANCEL_NO" )
+	AddDialogButton( data, "Yes, proceed and delete all current props.", ConfirmLoad)
+
+	OpenDialog(data)
+}
+
+void function ConfirmSave() {
+	int save = GetConVarInt( "save_map" )
 	RunClientScript( "UICallback_SaveMap", save)
+}
+
+void function ConfirmLoad() {
+	int load = GetConVarInt( "load_map" )
+
+	RunClientScript( "UICallback_LoadMap", load )
 }
 
 void function OpenModelMenu() {
