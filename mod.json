@@ -15,6 +15,18 @@
     ],
     "Scripts": [
         {
+            "Path": "maps/save_file1.nut",
+            "RunOn": "(CLIENT || SERVER) && MP"
+        },
+        {
+            "Path": "maps/save_file2.nut",
+            "RunOn": "(CLIENT || SERVER) && MP"
+        },
+        {
+            "Path": "maps/save_file3.nut",
+            "RunOn": "(CLIENT || SERVER) && MP"
+        },
+        {
             "Path": "weapons/editor_modes/mode_extend.nut",
             "RunOn": "(CLIENT || SERVER) && MP"
         },
