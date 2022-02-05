@@ -1,4 +1,5 @@
 global function SavePropMap
+global function LoadPropMap
 
 // a script that writes scripts..
 const string HEADER = "global function InitMap%n\n\nglobal const MAP_%n_EXISTS = true\nglobal array<string> MAP_%n_PROPS\n\n" +
@@ -6,6 +7,46 @@ const string HEADER = "global function InitMap%n\n\nglobal const MAP_%n_EXISTS =
 
 const string FOOTER = "}\n\nvoid function AddMapProp( asset a, vector pos, vector ang, bool mantle, int fade)\n{\n" +
                     "	MAP_%n_PROPS.append(SerializeProp(a,pos,ang,mantle,fade))\n}"
+
+void function LoadPropMap( int map ) {
+    if (MapExists( map )) {
+        // Delete old map
+        waitthread ClearMap()
+
+        array<string> props = GetMapProps( map )
+        foreach(string prop in props) {
+            AddProp(DeserializeProp(prop))
+        }
+    }
+}
+
+// is this a stupid way to do this?
+// yes but i cba
+array<string> function GetMapProps( int map ) {
+    if (map == 0) {
+        return MAP_0_PROPS
+    } else if (map == 1) {
+        return MAP_1_PROPS
+    } else if (map == 2) {
+        return MAP_2_PROPS
+    } else {
+        return []
+    }
+    unreachable
+}
+
+bool function MapExists( int map ) {
+    if (map == 0) {
+        return MAP_0_EXISTS
+    } else if (map == 1) {
+        return MAP_1_EXISTS
+    } else if (map == 2) {
+        return MAP_2_EXISTS
+    } else {
+        return false
+    }
+    unreachable
+}
 
 void function SavePropMap( int map ) {
     array<string> code = []
@@ -20,7 +61,6 @@ void function SavePropMap( int map ) {
 void function WriteOut(string filename, int map, array<string> code) {
     string repHeader = Replace(HEADER, "%n", string(map), 4)
     string repFooter = Replace(FOOTER, "%n", string(map), 1)
-    printl("yo")
 
     DevTextBufferClear()
 
@@ -48,7 +88,7 @@ string function Replace(string toReplace, string placeholder, string to, int tim
 
 string function GenerateCode( entity prop ) {
     vector origin = prop.GetOrigin()
-    vector angles = prop.GetOrigin()
+    vector angles = prop.GetAngles()
 
     float x = origin.x
     float y = origin.y

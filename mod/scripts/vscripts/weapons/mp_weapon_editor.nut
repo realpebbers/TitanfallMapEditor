@@ -7,6 +7,7 @@ global function GetAllProps
 global function AddProp
 #elseif CLIENT
 global function UICallback_SaveMap
+global function UICallback_LoadMap
 #endif
 
 global function OnWeaponActivate_editor
@@ -43,6 +44,7 @@ void function Editor_Init() {
     #elseif SERVER
     AddClientCommandCallback("editor_mode", ClientCommand_EditorMode)
     AddClientCommandCallback("savemap", ClientCommand_Save)
+    AddClientCommandCallback("loadmap", ClientCommand_Load)
     #endif
 }
 
@@ -148,6 +150,15 @@ bool function ClientCommand_Save(entity player, array<string> args) {
 
     int map = args[0].tointeger()
     SavePropMap(map)
+
+    return true
+}
+
+bool function ClientCommand_Load(entity player, array<string> args) {
+    if (args.len() == 0) return false
+
+    int map = args[0].tointeger()
+    thread LoadPropMap(map)
 
     return true
 }

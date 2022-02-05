@@ -70,10 +70,33 @@ vector function DeserializeVector(string vec) {
     return < x, y, z >
 }
 #if SERVER
+void function ClearMap() {
+    int per = 5
+    int i = 0
+
+    foreach(prop in GetAllProps()) {
+        i++
+        prop.Destroy()
+
+        if (i % per) {
+            wait 0.1
+        }
+    }
+
+    GetAllProps().clear()
+}
+
+string function CleanAsset(string a) {
+    string r = a
+    r = StringReplace(r, "$\"", "")
+    r = StringReplace(r, "\"", "")
+    return r
+}
+
 entity function DeserializeProp(string ss) {
     array<string> data = split(ss, ";")
-    
-    asset model = CastStringToAsset(data[0])
+
+    asset model = CastStringToAsset(CleanAsset(data[0]))
     vector origin = DeserializeVector(data[1])
     vector angles = DeserializeVector(data[2])
     bool mantle = false
