@@ -765,5 +765,77 @@ resource/ui/menus/model_browser.menu
 
 			navUp					BtnModel15
 		}
+
+		SwtBtnSelectMapSave
+		{
+			ControlName					RuiButton
+			InheritProperties		SwitchButton
+			labelText						"Save Map"
+			wide    						500
+			ConVar                          "save_map"
+
+			pin_to_sibling BtnSearchLabel
+			pin_corner_to_sibling		TOP_LEFT
+			pin_to_sibling_corner		BOTTOM_LEFT
+
+			navUp					BtnModelSearch
+			navDown					SwtBtnSelectGamemode
+			navRight                BtnSave
+		}
+
+		SwtBtnSelectMapLoad
+		{
+			ControlName					RuiButton
+			InheritProperties		SwitchButton
+			labelText						"Load Map"
+			wide    						500
+			ConVar                          "load_map"
+
+			pin_to_sibling SwtBtnSelectMapSave
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+
+			navUp					SwtBtnSelectMapSave
+			navRight                BtnLoad
+		}
+
+		BtnLoad
+		{
+			ControlName							RuiButton
+			InheritProperties				RuiSmallButton
+			labelText				"Load"
+			wide 100
+			xpos		-17
+			ypos 		-57
+			zpos 90
+
+			scriptID			999
+
+			pin_to_sibling			FilterPanel
+			pin_corner_to_sibling	TOP_RIGHT
+			pin_to_sibling_corner	BOTTOM_RIGHT
+
+			navLeft					SwtBtnSelectMapLoad
+		}
+
+		BtnSave
+		{
+			ControlName							RuiButton
+			InheritProperties				RuiSmallButton
+			labelText				"Save"
+			wide 100
+			xpos		-17
+			ypos 		-103
+			zpos 90
+
+			scriptID			999
+
+			pin_to_sibling			FilterPanel
+			pin_corner_to_sibling	TOP_RIGHT
+			pin_to_sibling_corner	BOTTOM_RIGHT
+
+			navLeft					SwtBtnSelectMapSave
+			navDown                 BtnSave
+		}
     }
 }

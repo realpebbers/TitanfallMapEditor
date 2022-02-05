@@ -3,6 +3,16 @@
     "LoadPriority": 2,
     "Version": "1.0.0",
     "RequiredOnClient": true,
+    "ConVars": [
+        {
+            "Name": "save_map",
+            "DefaultValue": "0"
+        },
+        {
+            "Name": "load_map",
+            "DefaultValue": "0"
+        }
+    ],
     "Scripts": [
         {
             "Path": "weapons/editor_modes/mode_extend.nut",

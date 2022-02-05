@@ -99,7 +99,16 @@ void function InitModelBrowserMenu()
 	// The buttons at the top to start sorting
 	// "Servers" (Name), Players", "Map", "Gamemode", "Latency"
 
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapSave" ), "Map Save 1", "0" )
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapSave" ), "Map Save 2", "1" )
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapSave" ), "Map Save 3", "2" )
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapLoad" ), "Map Save 1", "0" )
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapLoad" ), "Map Save 2", "1" )
+	Hud_DialogList_AddListItem( Hud_GetChild( file.menu, "SwtBtnSelectMapLoad" ), "Map Save 3", "2" )
 	//AddButtonEventHandler( Hud_GetChild( file.menu, "BtnModelNameTab"), UIE_CLICK, SortServerListByName )
+
+	RuiSetString( Hud_GetRui( Hud_GetChild( file.menu, "SwtBtnSelectMapSave")), "buttonText", "")
+	RuiSetString( Hud_GetRui( Hud_GetChild( file.menu, "SwtBtnSelectMapLoad")), "buttonText", "")
 
 	//Buttons at the bottom
     AddButtonEventHandler( Hud_GetChild( file.menu, "BtnSearchLabel"), UIE_CHANGE, FilterAndUpdateList )
