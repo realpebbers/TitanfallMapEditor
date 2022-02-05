@@ -2,13 +2,17 @@ global function EditorModeExtend_Init
 
 #if CLIENT
 struct {
-    entity highlightedEnt
+    array<entity> highlightedEnts
+    int distance = 1
 } file
 #endif
 
 EditorMode function EditorModeExtend_Init() 
 {
     RegisterSignal("EditorModeExtendExit")
+    #if SERVER
+    AddClientCommandCallback("extend_distance", ClientCommand_ExtendDistance)
+    #endif
 
     return NewEditorMode(
         "Extend",
@@ -22,7 +26,21 @@ EditorMode function EditorModeExtend_Init()
 void function EditorModeExtend_Activation(entity player)
 {
     #if CLIENT
+    RegisterButtonReleasedCallback( MOUSE_WHEEL_UP, IncreaseDistance );
+	RegisterButtonReleasedCallback( MOUSE_WHEEL_DOWN, DecreaseDistance );
+
     thread EditorModeExtend_Think(player)
+    #endif
+}
+
+void function EditorModeExtend_Deactivation(entity player)
+{
+    Signal(player, "EditorModeExtendExit")
+    #if CLIENT
+    DeregisterButtonReleasedCallback( MOUSE_WHEEL_UP, IncreaseDistance );
+	DeregisterButtonReleasedCallback( MOUSE_WHEEL_DOWN, DecreaseDistance );
+
+    ClearHighlighted()
     #endif
 }
 
@@ -32,19 +50,14 @@ void function EditorModeExtend_Think(entity player) {
     
     OnThreadEnd(
         function() : (player) {
-            if(IsValid(GetProp(player)))
-            {
-                file.highlightedEnt.Destroy()
-            }
+            ClearHighlighted()
         }
     )
     
     while( true )
     {
         TraceResults result = GetPropLineTrace(player)
-        if (IsValid(file.highlightedEnt)) {
-            file.highlightedEnt.Destroy()
-        }
+        ClearHighlighted()
         if (!IsValid(result.hitEnt)) {
             WaitFrame()
             continue
@@ -69,38 +82,37 @@ void function EditorModeExtend_Think(entity player) {
             }
             
             vector res = <normal.x * bounds.x, normal.y * bounds.y, normal.z * bounds.z>
-            vector pog = result.hitEnt.GetOrigin() + res
 
-            #if CLIENT
-            file.highlightedEnt = CreateClientSidePropDynamic(
-                pog,
-                result.hitEnt.GetAngles(),
-                result.hitEnt.GetModelName()
-            )
-
-            DeployableModelHighlight( file.highlightedEnt )
-            #endif
+            int maxD = file.distance
+            for (int i = 0; i < maxD; i++) {
+                int mult = i + 1
+                vector pos = result.hitEnt.GetOrigin() + < res.x * mult, res.y * mult, res.z * mult >
+                entity e = CreateClientSidePropDynamic(pos, result.hitEnt.GetAngles(), result.hitEnt.GetModelName())
+                
+                file.highlightedEnts.append(e)
+                DeployableModelHighlight( e )
+            }
         }
-        
 
         WaitFrame()
     }
 }
-#endif
 
-
-void function EditorModeExtend_Deactivation(entity player)
-{
-    Signal(player, "EditorModeExtendExit")
-    #if CLIENT
-    if (IsValid(file.highlightedEnt)) {
-        file.highlightedEnt.Destroy()
+void function ClearHighlighted() {
+    foreach(entity e in file.highlightedEnts) {
+        if (IsValid(e)) {
+            e.Destroy()
+        }
     }
-    #endif
+
+    file.highlightedEnts.clear()
 }
+
+#endif
 
 void function EditorModeExtend_Extend(entity player)
 {
+    #if SERVER
     TraceResults result = GetPropLineTrace(player)
     if (IsValid(result.hitEnt) && result.hitEnt.GetScriptName() == "editor_placed_prop")
     {
@@ -120,11 +132,26 @@ void function EditorModeExtend_Extend(entity player)
         }
         
         vector res = <normal.x * bounds.x, normal.y * bounds.y, normal.z * bounds.z>
-        vector pog = result.hitEnt.GetOrigin() + res
 
-        PlaceProp(player, result.hitEnt.GetModelName(), pog, result.hitEnt.GetAngles())
+        int maxD = player.p.extendDistance
+        for(int i = 0; i < maxD; i++) {
+            int mult = i+1
+            vector pos = result.hitEnt.GetOrigin() + < res.x * mult, res.y * mult, res.z * mult >
+        
+            PlaceProp(player, result.hitEnt.GetModelName(), pos, result.hitEnt.GetAngles())
+        }
     }
+    #endif
 }
+
+#if SERVER
+bool function ClientCommand_ExtendDistance(entity player, array<string> args) {
+    int a = args[0].tointeger()
+
+    player.p.extendDistance = a
+    return true
+}
+#endif
 
 void function PlaceProp(entity player, asset ass, vector origin, vector angles)
 {
@@ -140,6 +167,30 @@ void function PlaceProp(entity player, asset ass, vector origin, vector angles)
     #elseif CLIENT
     if(player != GetLocalClientPlayer()) return;
 
-    file.highlightedEnt.Destroy()
+    ClearHighlighted()
     #endif
 }
+
+
+#if CLIENT 
+void function IncreaseDistance(var button) {
+    file.distance++
+    if (file.distance > 7) {
+        file.distance = 7
+    }
+
+    entity player = GetLocalClientPlayer()
+    player.ClientCommand("extend_distance " + file.distance)
+}
+
+void function DecreaseDistance(var button) {
+    file.distance--
+    if (file.distance <= 1) {
+        file.distance = 1
+    }
+    
+    entity player = GetLocalClientPlayer()
+    player.ClientCommand("extend_distance " + file.distance)
+}
+
+#endif

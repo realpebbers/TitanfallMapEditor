@@ -17,10 +17,14 @@ You don't need the map editor to load a map, all you have to do is get the map's
 3. Start editing!
 
 To change the model or the mode go to your controls settings and modify the keys
-1. The place mode is used to place new props
+1. The place mode is used to place new props (Use the num pad and scroll wheel for precise positioning)
 2. The extend mode is to repeat a prop in a certain direction
 3. The delete mode deletes existing props
 4. The bulk place mode is currently broken pls dont use it
 
 ## Exporting
-Refer to the [R2Edit](https://github.com/Vysteria/R2Edit) repo
+Open the model menu (tab), select which save file you want then press save.
+
+## Loading
+Loading maps to continue building on them is done via the model menu, select the map of choice then press on the Load button. <br/>
+If you are a modder all you need to do to load a map at any given time is to run LoadPropMap(mapIndex), this can be done whenever and it will delete all already spawned props.

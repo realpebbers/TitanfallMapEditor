@@ -511,6 +511,7 @@ global struct ServerPlayerStruct
 	EditorMode ornull lastEditorMode
 
 	vector offsetVector
+	int extendDistance = 1
 }
 
 global struct TitanSettings
