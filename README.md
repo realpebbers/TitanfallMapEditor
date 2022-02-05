@@ -12,6 +12,10 @@ Go to the releases tab then download the latest version and put it in your mods 
 Get the map file and replace it in your save files folder (mod/scripts/vscripts/maps) <br/>
 Load it via a script or the ingame menu.
 
+## I cant find the asset I want!
+Every map has a different set of assets, we are working on improving it so you can use any props but look in different maps for now. <br/>
+Also not everything has a prop, it can be something in the map .bsp
+
 ## How to use the map editor?
 1. Enable sv_cheats in console by doing "sv_cheats 1"
 2. Give your self the editor by doing "give mp_weapon_editor"
