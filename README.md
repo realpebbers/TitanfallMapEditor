@@ -9,7 +9,8 @@ Mantained by Pebbers and JANU
 Go to the releases tab then download the latest version and put it in your mods folder.
 
 ## How to download a map?
-You don't need the map editor to load a map, all you have to do is get the map's script file and put it inside of vscripts/mp/level/(map name).nut
+Get the map file and replace it in your save files folder (mod/scripts/vscripts/maps) <br/>
+Load it via a script or the ingame menu.
 
 ## How to use the map editor?
 1. Enable sv_cheats in console by doing "sv_cheats 1"
