@@ -4,6 +4,8 @@ For any bugs please DM Pebbers#9558 on discord, or create an issue in this repo.
 This is a fork of R5Reloaded's map editor with alot of modifications.
 Mantained by Pebbers and JANU
 
+[Tutorial](https://www.youtube.com/watch?v=lu1X-1ufKbc)
+
 # FAQ:
 ## How to download the map editor?
 Go to the releases tab then download the latest version and put it in your mods folder.
