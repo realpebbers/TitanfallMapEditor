@@ -28,10 +28,7 @@ EditorMode function EditorModePlace_Init()
 
 #if CLIENT
 void function RegisterButtonCallbacks() {
-    RegisterConCommandTriggeredCallback("+scriptCommand2", OpenModelMenu)
-
     // (From Icepick)
-    // Fine rotation using numpad
     RegisterButtonReleasedCallback( MOUSE_WHEEL_UP, KeyPress_Up );
 	RegisterButtonReleasedCallback( MOUSE_WHEEL_DOWN, KeyPress_Down );
 
@@ -43,8 +40,6 @@ void function RegisterButtonCallbacks() {
 }
 
 void function DeregisterButtonCallbacks() {
-    DeregisterConCommandTriggeredCallback("+scriptCommand2", OpenModelMenu)
-
     DeregisterButtonReleasedCallback( MOUSE_WHEEL_UP, KeyPress_Up );
 	DeregisterButtonReleasedCallback( MOUSE_WHEEL_DOWN, KeyPress_Down );
 
@@ -305,10 +300,6 @@ void function ServerCallback_UpdateModel( int idx ) {
     entity player = GetLocalClientPlayer()
 
     player.p.selectedProp.selectedAsset = GetAssets()[idx]
-}
-
-void function OpenModelMenu( var button ) {
-    RunUIScript("OpenModelMenu")
 }
 
 void function UICallback_SelectModel(string name) {

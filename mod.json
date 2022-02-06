@@ -1,7 +1,7 @@
 {
     "Name": "Map Editor",
     "LoadPriority": 2,
-    "Version": "1.0.0",
+    "Version": "1.0.4",
     "RequiredOnClient": true,
     "ConVars": [
         {

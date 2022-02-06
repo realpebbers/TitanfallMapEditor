@@ -57,7 +57,11 @@ string function SerializeVector( vector o ) {
 }
 
 string function SerializeProp( asset a, vector pos, vector ang, bool mantle, int fade) {
-    return string(a) + ";" + SerializeVector(pos) + ";" + SerializeVector(ang) + ";" + mantle + ";" + fade
+    return "0;" + string(a) + ";" + SerializeVector(pos) + ";" + SerializeVector(ang) + ";" + mantle + ";" + fade
+}
+
+string function SerializePropV2( asset a, vector pos, vector ang, bool hidden, int fade) {
+    return "1;" + string(a) + ";" + SerializeVector(pos) + ";" + SerializeVector(ang) + ";" + hidden + ";" + fade
 }
 
 vector function DeserializeVector(string vec) {
@@ -96,19 +100,25 @@ string function CleanAsset(string a) {
 entity function DeserializeProp(string ss) {
     array<string> data = split(ss, ";")
 
-    asset model = CastStringToAsset(CleanAsset(data[0]))
-    vector origin = DeserializeVector(data[1])
-    vector angles = DeserializeVector(data[2])
+    int ver = data[0].tointeger()
+    asset model = CastStringToAsset(CleanAsset(data[1]))
+    vector origin = DeserializeVector(data[2])
+    vector angles = DeserializeVector(data[3])
     bool mantle = false
-    int fade = data[4].tointeger()
+    bool hidden = false
+    int fade = data[5].tointeger()
 
-    if (data[3] == "true") {
+    if (data[4] == "true") {
+        if (ver != 0) {
+            hidden = true
+        }
         mantle = true
     }
 
     entity e = CreatePropDynamicLightweight(model,origin,angles,SOLID_VPHYSICS,float(fade))
     e.SetScriptName("editor_placed_prop")
 	if(mantle) e.AllowMantle()
+    if(hidden) e.Hide()
 	return e
 }
 #endif

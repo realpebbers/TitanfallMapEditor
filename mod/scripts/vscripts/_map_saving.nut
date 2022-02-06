@@ -6,7 +6,9 @@ const string HEADER = "global function InitMap%n\n\nglobal const MAP_%n_EXISTS =
                     "void function InitMap%n() {\n"
 
 const string FOOTER = "}\n\nvoid function AddMapProp( asset a, vector pos, vector ang, bool mantle, int fade)\n{\n" +
-                    "	MAP_%n_PROPS.append(SerializeProp(a,pos,ang,mantle,fade))\n}"
+                    "	MAP_%n_PROPS.append(SerializeProp(a,pos,ang,mantle,fade))\n}\n\n" +
+                    "	void function AddMapPropV2( asset a, vector pos, vector ang, bool hidden, int fade)\n{\n" +
+                    "	MAP_%n_PROPS.append(SerializePropV2(a,pos,ang,hidden,fade))\n}" 
 
 void function LoadPropMap( int map ) {
     if (MapExists( map )) {
@@ -83,7 +85,7 @@ void function SavePropMap( int map ) {
 
 void function WriteOut(string filename, int map, array<string> code) {
     string repHeader = Replace(HEADER, "%n", string(map), 4)
-    string repFooter = Replace(FOOTER, "%n", string(map), 1)
+    string repFooter = Replace(FOOTER, "%n", string(map), 2)
 
     DevTextBufferClear()
 
@@ -124,5 +126,5 @@ string function GenerateCode( entity prop ) {
     string pos = "< " + x + ", " + y + ", " + z + " >"
     string ang = "< " + x1 + ", " + y1 + ", " + z1 + " >"
 
-    return "AddMapProp( " + prop.GetModelName() + ",  " + pos + ", " + ang + ", true, 6000)"
+    return "AddMapPropV2( " + prop.GetModelName() + ",  " + pos + ", " + ang + ", true, 6000)"
 }

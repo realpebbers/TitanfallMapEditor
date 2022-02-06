@@ -1,3 +1,4 @@
+
 global function Editor_Init
 global function RegisterEditorRemoteCallbacks
 global function NewEditorMode
@@ -38,7 +39,6 @@ void function Editor_Init() {
 //    RegisterEditorMode(EditorModeBulkPlace_Init())
 
     #if CLIENT
-    RegisterConCommandTriggeredCallback("+use", ChangeEditorMode)
 
     RunUIScript("UpdateCurrentMap", GetMapName())
     UI_Editor_Init()
@@ -57,6 +57,8 @@ void function OnWeaponActivate_editor(entity weapon) {
 
     #if CLIENT
     UI_Editor_ToggleUI()
+    RegisterConCommandTriggeredCallback("+use", ChangeEditorMode)
+    RegisterConCommandTriggeredCallback("+scriptCommand2", OpenModelMenu)
     #endif
     if(player.p.selectedEditorMode.activateCallback == null) {
         #if CLIENT
@@ -73,6 +75,8 @@ void function OnWeaponDeactivate_editor(entity weapon) {
     entity player = weapon.GetOwner()
     
     #if CLIENT
+    DeregisterConCommandTriggeredCallback("+use", ChangeEditorMode)
+    DeregisterConCommandTriggeredCallback("+scriptCommand2", OpenModelMenu)
     UI_Editor_ToggleUI()
     #endif
     player.p.selectedEditorMode.deactivateCallback(player)
@@ -137,7 +141,7 @@ void function UICallback_LoadMap( int map ) {
     player.ClientCommand("loadmap " + map)
 }
 
-void function UICallback_DeleteMap( int map ) {
+void function UICallback_DeleteMap() {
     entity player = GetLocalClientPlayer()
 
     player.ClientCommand("deletemap")
@@ -148,6 +152,11 @@ void function ChangeEditorMode( var button ) {
 
     NextEditorMode(player)
     player.ClientCommand("editor_mode")
+}
+
+
+void function OpenModelMenu( var button ) {
+    RunUIScript("OpenModelMenu")
 }
 
 #elseif SERVER
