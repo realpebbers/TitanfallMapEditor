@@ -70,7 +70,9 @@ void function UpdatePrivateMatchModesAndMaps()
 void function InitModelBrowserMenu()
 {
 	file.menu = GetMenu( "ModelBrowserMenu" )
-
+	
+	AddMouseMovementCaptureHandler( file.menu, ModelUpdateMouseDeltaBuffer )
+	
 	// Get menu stuff
 	file.modelButtons = GetElementsByClassname( file.menu, "ModelButton" )
 	file.modelNames = GetElementsByClassname( file.menu, "ModelName" )
@@ -182,10 +184,12 @@ void function UpdateListSliderHeight( float models )
 	var movementCapture = Hud_GetChild( file.menu , "MouseMovementCapture" )
 
 	float maxHeight = 562.0 * (GetScreenSize()[1] / 1080.0)
+	float minHeight = 80.0 * (GetScreenSize()[1] / 1080.0)
 
-	float height = maxHeight * (30.0 / models )
+	float height = maxHeight * (15.0 / models )
 
 	if ( height > maxHeight ) height = maxHeight
+	if ( height < minHeight ) height = minHeight
 
 	Hud_SetHeight( sliderButton , height )
 	Hud_SetHeight( sliderPanel , height )
